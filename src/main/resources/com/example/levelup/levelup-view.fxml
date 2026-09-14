@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.levelup.LevelUpController">
+
+    <top>
+        <MenuBar>
+            <Menu text="Inventario">
+                <MenuItem text="Catálogo" onAction="#mostrarCatalogo"/>
+                <MenuItem text="Edición" onAction="#mostrarEdicion"/>
+                <MenuItem text="Resumen por categoría" onAction="#mostrarResumenCategoria"/>
+                <MenuItem text="CRUD Productos" onAction="#mostrarCrudProductos"/>
+            </Menu>
+
+            <Menu text="Clientes">
+                <MenuItem text="Listado clientes" onAction="#mostrarClientes"/>
+                <MenuItem text="Resumen facturación por cliente" onAction="#mostrarFacturacion"/>
+            </Menu>
+
+            <Menu text="Resúmenes">
+                <MenuItem text="Facturación por cliente" onAction="#mostrarFacturacionCliente"/>
+                <MenuItem text="Facturación por categoría" onAction="#mostrarFacturacionCategoria"/>
+                <MenuItem text="Productos bajo stock" onAction="#mostrarProductosBajoStock"/>
+            </Menu>
+        </MenuBar>
+    </top>
+
+    <center>
+        <StackPane>
+
+            <VBox fx:id="panelCatalogo" alignment="CENTER" spacing="20">
+                <Label text="Panel Catálogo"/>
+            </VBox>
+
+            <VBox fx:id="panelEdicion" alignment="CENTER" spacing="20" visible="false">
+                <Label text="Panel Edición"/>
+            </VBox>
+
+            <VBox fx:id="panelResumenCategoria" alignment="CENTER" spacing="20" visible="false">
+                <Label text="Panel Resumen por categoría"/>
+            </VBox>
+
+            <VBox fx:id="panelClientes" alignment="CENTER" spacing="20" visible="false">
+                <Label text="Listado de clientes"/>
+
+                <TableView fx:id="tablaClientes" prefWidth="800" prefHeight="400">
+                    <columns>
+                        <TableColumn fx:id="colId" text="ID" prefWidth="80"/>
+                        <TableColumn fx:id="colNombre" text="Nombre" prefWidth="130"/>
+                        <TableColumn fx:id="colApellidos" text="Apellidos" prefWidth="180"/>
+                        <TableColumn fx:id="colEmail" text="Email" prefWidth="200"/>
+                        <TableColumn fx:id="colTelefono" text="Teléfono" prefWidth="120"/>
+                        <TableColumn fx:id="colDireccion" text="Dirección" prefWidth="150"/>
+                    </columns>
+                </TableView>
+            </VBox>
+
+            <VBox fx:id="panelFacturacion" alignment="CENTER" spacing="20" visible="false">
+                <Label text="Panel Resumen facturación por cliente"/>
+            </VBox>
+
+            <VBox fx:id="panelFacturacionCliente" alignment="CENTER" spacing="20" visible="false">
+                <Label text="Facturación por cliente"/>
+
+                <TableView fx:id="tablaFacturacionCliente" prefWidth="600" prefHeight="350">
+                    <columns>
+                        <TableColumn fx:id="colResumenClienteNombre" text="Cliente" prefWidth="350"/>
+                        <TableColumn fx:id="colResumenClienteTotal" text="Total facturado" prefWidth="200"/>
+                    </columns>
+                </TableView>
+            </VBox>
+
+            <VBox fx:id="panelFacturacionCategoria" alignment="CENTER" spacing="20" visible="false">
+                <Label text="Facturación por categoría"/>
+
+                <TableView fx:id="tablaFacturacionCategoria" prefWidth="600" prefHeight="350">
+                    <columns>
+                        <TableColumn fx:id="colResumenCategoriaNombre" text="Categoría" prefWidth="350"/>
+                        <TableColumn fx:id="colResumenCategoriaTotal" text="Total facturado" prefWidth="200"/>
+                    </columns>
+                </TableView>
+            </VBox>
+
+            <VBox fx:id="panelProductosBajoStock" alignment="CENTER" spacing="20" visible="false">
+                <Label text="Productos con bajo stock"/>
+
+                <TableView fx:id="tablaProductosBajoStock" prefWidth="600" prefHeight="350">
+                    <columns>
+                        <TableColumn fx:id="colProductoBajoStockNombre" text="Producto" prefWidth="400"/>
+                        <TableColumn fx:id="colProductoBajoStockStock" text="Stock" prefWidth="150"/>
+                    </columns>
+                </TableView>
+            </VBox>
+
+            <VBox fx:id="panelCrudProductos" alignment="CENTER" spacing="10" visible="false">
+
+                <Label text="CRUD de productos LevelUp"/>
+
+                <GridPane hgap="10" vgap="10">
+                    <Label text="ID:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                    <TextField fx:id="txtIdProducto" editable="false" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                    <Label text="Nombre:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                    <TextField fx:id="txtNombreProducto" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+                    <Label text="Descripción:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                    <TextField fx:id="txtDescripcionProducto" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+                    <Label text="Precio:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                    <TextField fx:id="txtPrecioProducto" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+                    <Label text="Stock:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+                    <TextField fx:id="txtStockProducto" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+
+                    <Label text="Tipo producto:" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+                    <TextField fx:id="txtTipoProducto" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+
+                    <Label text="ID Categoría:" GridPane.rowIndex="6" GridPane.columnIndex="0"/>
+                    <TextField fx:id="txtIdCategoriaProducto" GridPane.rowIndex="6" GridPane.columnIndex="1"/>
+                </GridPane>
+
+                <HBox spacing="10" alignment="CENTER">
+                    <Button text="Primero" onAction="#primerProducto"/>
+                    <Button text="Anterior" onAction="#anteriorProducto"/>
+                    <Button text="Siguiente" onAction="#siguienteProducto"/>
+                    <Button text="Último" onAction="#ultimoProducto"/>
+                </HBox>
+
+                <HBox spacing="10" alignment="CENTER">
+                    <Button text="Nuevo" onAction="#nuevoProducto"/>
+                    <Button text="Guardar" onAction="#guardarProducto"/>
+                    <Button text="Actualizar" onAction="#actualizarProducto"/>
+                    <Button text="Borrar" onAction="#borrarProducto"/>
+                </HBox>
+
+                <Label fx:id="lblMensajeProducto"/>
+
+            </VBox>
+
+        </StackPane>
+    </center>
+
+</BorderPane>
